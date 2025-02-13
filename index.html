@@ -32,7 +32,7 @@
             resultado.textContent = "";
             
             try {
-                const response = await fetch(`http://helya.pylex.xyz:10234/api/addlink?url=${encodeURIComponent(link)}`);
+                const response = await fetch(`/api/proxy?url=${encodeURIComponent(link)}`);
                 const data = await response.json();
                 
                 if (data.result) {
