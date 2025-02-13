@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxus Key Fetcher</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 10px; padding: 10px; font-size: 16px; }
+        #resultado { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Pegar Key do Fluxus</h2>
+    <input type="text" id="linkInput" placeholder="Insira o link" size="50">
+    <button onclick="pegarKey()">Obter Key</button>
+    <p id="status"></p>
+    <p id="resultado"></p>
+
+    <script>
+        async function pegarKey() {
+            const link = document.getElementById("linkInput").value;
+            const status = document.getElementById("status");
+            const resultado = document.getElementById("resultado");
+            
+            if (!link) {
+                alert("Por favor, insira um link válido.");
+                return;
+            }
+            
+            status.textContent = "Aguardando resposta da API...";
+            resultado.textContent = "";
+            
+            try {
+                const response = await fetch(`http://helya.pylex.xyz:10234/api/addlink?url=${encodeURIComponent(link)}`);
+                const data = await response.json();
+                
+                if (data.result) {
+                    resultado.textContent = `Key: ${data.result}`;
+                } else {
+                    resultado.textContent = "Erro ao obter a Key.";
+                }
+            } catch (error) {
+                resultado.textContent = "Erro ao conectar com a API.";
+            }
+            
+            status.textContent = "";
+        }
+    </script>
+</body>
+</html>
