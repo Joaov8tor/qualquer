@@ -1,8 +1,9 @@
 {
-  "rewrites": [
+  "version": 2,
+  "routes": [
     {
-      "source": "/api/addlink",
-      "destination": "http://helya.pylex.xyz:10234/api/addlink"
+      "src": "/api/proxy",
+      "dest": "/api/proxy.js"
     }
   ]
 }
