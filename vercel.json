@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/addlink",
+      "destination": "http://helya.pylex.xyz:10234/api/addlink"
+    }
+  ]
+}
